@@ -1,0 +1,39 @@
+
+/* sparkline */
+.sparkline {
+     fill: none;
+     stroke: #303030;
+}
+
+.spark-first, .spark-last {
+    fill: #ac4142;
+    stroke: none;
+}
+
+.spark-low, .spark-high{
+    fill: #6a9fb5;
+    stroke: none;
+}
+
+/* bullet graph */
+.axis path {
+    fill: none;
+    stroke: none;
+}
+
+.axis line {
+    fill: none;
+    stroke: lightgray;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+.range.s0 { fill: #E5E5E5; }
+.range.s1 { fill: #BFBFBF; }
+.range.s2 { fill: #999999; }
+
+.marker { stroke: #000; stroke-width: 2px; }

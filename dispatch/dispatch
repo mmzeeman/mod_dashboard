@@ -1,0 +1,4 @@
+%% TODO: add
+[
+  {dashboard, ["dashboard"], controller_template, [{template, "dashboard.tpl"}]}
+].
