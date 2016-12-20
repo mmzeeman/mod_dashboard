@@ -50,7 +50,7 @@
 {% javascript %}
 
 
-        _line = d3.zviz.sparkline().width(150).height(18).hilite_last(false);
+        _line = d3.zviz.sparkline().width(150).height(18).hilite_last(true).hilite_first(true);
         var data = [ {x:  0, y: 145},
                      {x:  1, y: 136},
                      {x:  2, y: 145},
@@ -81,7 +81,7 @@
 
     var memory_processes_bullet = d3.zviz.bullet_graph().show_axis(false);
     var bullet_data = [{
-        ranges: [0, 10, 20, 100],
+        ranges: [0, 00, 70, 100],
         markers: [40],
         measures: [75]
     }];
@@ -94,9 +94,9 @@
 
     var memory_ets_bullet = d3.zviz.bullet_graph().show_axis(false);
     var bullet_data = [{
-        ranges: [0, 10, 20, 100],
+        ranges: [0, 0, 80, 100],
         markers: [40],
-        measures: [23]
+        measures: [56]
     }];
     d3.select("#memory_ets_bullet")
         .datum(bullet_data[0])
