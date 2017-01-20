@@ -9,8 +9,6 @@
 -export([scale_linear/4]).
 
 %%
-scale_linear(Measure, [MinAllowed,MaxAllowed], [Min, Max],  _Context) ->
+scale_linear(Measure, [Min, Max],[MinAllowed,MaxAllowed],  _Context) ->
     (MaxAllowed - MinAllowed) * (Measure - Min) / (Max - Min) + MinAllowed.
-
-
 
