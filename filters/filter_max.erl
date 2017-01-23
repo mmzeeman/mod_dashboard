@@ -9,7 +9,7 @@
 ]).
 
 %%
-max(List,  _Context) ->
+max(List, _Context) ->
     lists:max(List).
 
 
