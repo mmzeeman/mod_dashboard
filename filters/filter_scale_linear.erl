@@ -10,5 +10,9 @@
 
 %%
 scale_linear(Measure, [Min, Max],[MinAllowed,MaxAllowed],  _Context) ->
-    (MaxAllowed - MinAllowed) * (Measure - Min) / (Max - Min) + MinAllowed.
+    case (Max - Min) + MinAllowed of
+        0 -> 0;
+        0.0 -> 0.0;
+        Scale -> (MaxAllowed - MinAllowed) * (Measure - Min) / Scale
+    end.
 
