@@ -21,7 +21,6 @@ tick_step([Start, Stop], Count, _Context) ->
     get_tick_step(Start, Stop, Count).
 
 get_tick_step(Start, Stop, Count) ->
-    ?DEBUG({Start, Stop, Count}),
     case abs(Stop - Start) / lists:max([0, Count]) of
         0 -> 1;
         0.0 -> 1.0;
