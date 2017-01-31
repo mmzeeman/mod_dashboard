@@ -8,7 +8,7 @@
         {% with values | list_max as max %}
              {% for v in values %}
                 <rect x={{ forloop.counter0 * barwidth }} y ={{ height -v }} height="{{  v }}" width="{{ barwidth - 1 }}" 
-                    {% if forloop.last %}fill="maroon"{% else %}fill="steelblue"{% endif %}></rect>
+                    {% if bar_attrs %}{% include bar_attrs forloop=forloop %}{% endif %}></rect>
                 <text x="{{ forloop.counter0 * barwidth + (barwidth/2) }}" y="{{ height -v }}"  text-anchor="middle" dy="1em">{{ v }}</text>
              {% endfor %}
         {% endwith %}
