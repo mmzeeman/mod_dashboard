@@ -18,6 +18,11 @@
              {% endwith %}
              {% endwith %}
              {% endfor %}
+             {% if bar_tick %}
+                 {% for v in values %}
+                     <text fill="#000" x="{{ forloop.counter0 * barwidth + (barwidth/2) }}" y="{{ bg_height }}"  text-anchor="middle" dy="1em">{% include bar_tick value=v %}</text>
+                 {% endfor %}
+             {% endif %}
         {% endwith %}
         {% endwith %}
     </svg>
