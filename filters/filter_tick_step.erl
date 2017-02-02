@@ -37,7 +37,7 @@ get_tick_step(Start, Stop, Count) ->
 %% Helpers
 %%
 
-step(Step0, 0) -> 0;
+step(_Step0, 0) -> 0;
 step(Step0, Step1) ->
     case Step0 / Step1 of
         Error when Error >= ?E10 -> Step1 * 10;

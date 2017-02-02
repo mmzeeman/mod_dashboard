@@ -5,18 +5,20 @@
 {% with width - margin_left - margin_right as bg_width %}
 <svg class="bar-chart" width="{{ width }}" height="{{ height }}">
     <g class="container-group" transform="translate({{ margin_left }},{{ margin_top }})">
-        {# with values | list_max as max #}
-        {% with 50 as max %}
+        {% with values | list_max:`count` as max %}
+        {% with [0, max[value_prop]] as range %}
              {% for v in values %}
              {% with v[value_prop] as value %}
-                 {{ v | pprint }}
-                 <a xlink:href="?test">
-                     <rect x={{ forloop.counter0 * barwidth }} y ={{ height - value }} height="{{ value }}" width="{{ barwidth - 1 }}" 
-                         {% if bar_attrs %}{% include bar_attrs forloop=forloop %}{% endif %}></rect>
-                     <text x="{{ forloop.counter0 * barwidth + (barwidth/2) }}" y="{{ height - value }}"  text-anchor="middle" dy="1em">{{ value }}</text>
-                 </a>
+             {% with value | scale_linear:range:[0,bg_height] as bar_height %}
+                 {% if bar_href %}<a xlink:href="{% include bar_href forloop=forloop value=v %}">{% endif %}
+                     <rect x={{ forloop.counter0 * barwidth }} y ={{ height - bar_height }} height="{{ bar_height }}" width="{{ barwidth - 1 }}" 
+                              {% if bar_attrs %}{% include bar_attrs forloop=forloop value=v %}{% endif %}></rect>
+                    <text x="{{ forloop.counter0 * barwidth + (barwidth/2) }}" y="{{ height - bar_height }}"  text-anchor="middle" dy="1em">{{ value }}</text>
+                 {% if bar_href %}</a>{% endif %}
+             {% endwith %}
              {% endwith %}
              {% endfor %}
+        {% endwith %}
         {% endwith %}
     </svg>
 </svg>
