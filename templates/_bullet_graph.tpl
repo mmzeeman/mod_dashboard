@@ -14,11 +14,16 @@
             {% endfor %}
         </g>
         {% endif %}
+        {% with measure|scale_linear:range:[0,bg_width]  as measure_width %}
         <rect class="measure s0" 
-            width="{{ measure|scale_linear:range:[0,bg_width] }}" 
-            height="{{ bg_height / 3 }}" 
+            width="{{ measure_width }}" 
+            height="{{ bg_height / 2 }}" 
             x="0" 
-            y="{{ bg_height / 3 }}"></rect>
+            y="{{ bg_height / 4 }}"></rect>
+        {% if measure_label %}
+            <text class="measure-label" x="{{ measure_width }}" y="{{(bg_height/4) * 3}}" text-anchor="end" dy="-0.5em" dx="-0.5em" >{{ measure }}</text>
+        {% endif %}
+        {% endwith %}
         {% if markers %}
         <g class="markers-group markers">
             {% for m in markers %}
