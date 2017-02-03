@@ -37,7 +37,14 @@
             {% for tick_value in start|range:stop:step %}
                 <g class="tick" transform="translate({{ tick_value|scale_linear:range:[0,bg_width] }},0)" style="opacity: 1;">
                     <line y1="{{ bg_height }}" y2="{{ bg_height * 7 / 6 }}"></line>
-                    {% if tick_label %}<text text-anchor="middle" dy="1em" y="{{ bg_height * 7 / 6 }}">{{ tick_value }}</text>{% endif %}
+                    {% if tick_label %}
+                         <text text-anchor="middle" dy="1em" y="{{ bg_height * 7 / 6 }}">
+                         {% if tick_template %}
+                             {% include tick_template value=tick_value %} 
+                         {% else %}
+                             {{ tick_value }}
+                         {% endif %}</text>
+                     {% endif %}
                 </g>
             {% endfor %}
             {% endwith %}
