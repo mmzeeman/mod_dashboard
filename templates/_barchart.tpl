@@ -12,7 +12,7 @@
              {% with value | scale_linear:range:[0,bg_height]  + (1/2) as bar_height %}
                  {% if bar_href %}<a xlink:href="{% include bar_href forloop=forloop value=v %}">{% endif %}
                      <rect x={{ forloop.counter0 * barwidth }} y ={{ bg_height - bar_height }} height="{{ bar_height }}" width="{{ barwidth - 1 }}" 
-                              {% if bar_attrs %}{% include bar_attrs forloop=forloop value=v %}{% endif %}></rect>
+                              {% if bar_attrs %}{% include bar_attrs forloop=forloop value=v bar_prop_extra=bar_prop_extra %}{% endif %}></rect>
                     <text x="{{ forloop.counter0 * barwidth + (barwidth/2) }}" y="{{ bg_height - bar_height }}"  text-anchor="middle" dy="1em">{{ value }}</text>
                  {% if bar_href %}</a>{% endif %}
              {% endwith %}
