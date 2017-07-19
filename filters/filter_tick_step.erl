@@ -43,7 +43,6 @@ step(Step0, Step1) ->
         Error when Error >= ?E10 -> Step1 * 10;
         Error when Error >= ?E5 -> Step1 * 5;
         Error when Error >= ?E2 -> Step1 * 2;
-        _ -> Step1 
+        _ -> Step1
     end.
 
-    
