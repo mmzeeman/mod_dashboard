@@ -6,7 +6,7 @@
 <svg class="bar-chart" width="{{ width }}" height="{{ height }}">
     <g class="container-group" transform="translate({{ margin_left }},{{ margin_top }})">
         {% with values | list_max:`count` as max %}
-        {% with [0, max[value_prop]] as range %}
+        {% with [0, max] as range %}
              {% for v in values %}
              {% with v[value_prop] as value %}
              {% with value | scale_linear:range:[0,bg_height]  + (1/2) as bar_height %}
