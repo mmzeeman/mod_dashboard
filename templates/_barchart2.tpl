@@ -6,15 +6,14 @@
 
 <svg class="bar-chart" width="{{ width }}" height="{{ height }}">
     <g class="container-group" transform="translate({{ margin_left }},{{ margin_top }})">
-        {% with values | list_max:`count` as max %}
-        {% with [0, max[value_prop]] as range %}
-             {% for v in scale_y | scale_ticks:ticks_y:domain_y %}
-                 {{ y | pprint }}
-                 {% with v[value_prop] as value %}
+        {% with values | list_max:y_property as max %}
+        {% with [0, max] as range %}
+             {% for tick in scale_x | scale_ticks:domain_x %}
+                 {% with values | get_value:tick:x_property:y_property as value %}
                  {% with value | scale_linear:range:[0,bg_height]  + (1/2) as bar_height %}
-                     {% if bar_href %}<a xlink:href="{% include bar_href forloop=forloop value=v %}">{% endif %}
+                     {% if bar_href %}<a xlink:href="{% include bar_href forloop=forloop value=tick %}">{% endif %}
                          <rect x={{ forloop.counter0 * barwidth }} y ={{ bg_height - bar_height }} height="{{ bar_height }}" width="{{ barwidth - 1 }}" 
-                              {% if bar_attrs %}{% include bar_attrs forloop=forloop value=v bar_prop_extra=bar_prop_extra %}{% endif %}></rect>
+                              {% if bar_attrs %}{% include bar_attrs forloop=forloop value=tick  bar_prop_extra=bar_prop_extra %}{% endif %}></rect>
                         <text x="{{ forloop.counter0 * barwidth + (barwidth/2) }}" y="{{ bg_height - bar_height }}"  text-anchor="middle" dy="1em">{{ value }}</text>
                     {% if bar_href %}</a>{% endif %}
                  {% endwith %}
@@ -22,7 +21,7 @@
              {% endfor %}
              {% if bar_tick %}
                  {% for v in values %}
-                     <text fill="#000" x="{{ forloop.counter0 * barwidth + (barwidth/2) }}" y="{{ bg_height }}"  text-anchor="middle" dy="1em">{% include bar_tick value=v %}</text>
+                     <text fill="#000" x="{{ forloop.counter0 * barwidth + (barwidth/2) }}" y="{{ bg_height }}"  text-anchor="middle" dy="1em">{% include bar_tick value=tick %}</text>
                  {% endfor %}
              {% endif %}
         {% endwith %}

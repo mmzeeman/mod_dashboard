@@ -5,14 +5,13 @@
 -module(filter_scale_ticks).
 
 -export([
-    scale_ticks/4
+    scale_ticks/3
 ]).
 
 -include_lib("zotonic.hrl").
 
-scale_ticks(ScaleModule, NrTicks, Domain, _Context) ->
-    ticks(ScaleModule, NrTicks, Domain).
+scale_ticks(ScaleModule, Domain, _Context) ->
+    ticks(ScaleModule, Domain).
 
-ticks(Module, NrTicks, Domain) ->
-    ?DEBUG({Module, NrTicks, Domain}),
-    Module:ticks(NrTicks, Domain).
+ticks(Module, Domain) ->
+    Module:ticks(Domain).
