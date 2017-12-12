@@ -4,6 +4,12 @@
 {% with height - margin_top - margin_bottom  as bg_height %}
 {% with width - margin_left - margin_right as bg_width %}
 
+{% if values == [] %}
+
+    <p>{_ No values _}</p>
+
+{% else %}
+
 <svg class="bar-chart" width="{{ width }}" height="{{ height }}">
     <g class="container-group" transform="translate({{ margin_left }},{{ margin_top }})">
         {% with values | list_max:y_property as max %}
@@ -26,6 +32,8 @@
         {% endwith %}
     </svg>
 </svg>
+
+{% endif %}
 
 {% endwith %}
 {% endwith %}
