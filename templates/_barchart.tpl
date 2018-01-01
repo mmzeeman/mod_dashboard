@@ -35,7 +35,7 @@
     </svg>
 </svg>
 
-{% endifequal %}
+{% endif %}
 
 {% endwith %}
 {% endwith %}
