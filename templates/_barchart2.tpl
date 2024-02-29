@@ -4,7 +4,7 @@
 {% with height - margin_top - margin_bottom  as bg_height %}
 {% with width - margin_left - margin_right as bg_width %}
 
-{% if values == [] %}
+{% if values | length == 0 %}
 
     <p>{_ No values _}</p>
 

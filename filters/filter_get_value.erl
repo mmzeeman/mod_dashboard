@@ -14,7 +14,9 @@
 get_value(Values, Tick, XProp, YProp, Context) ->
     get_value(Values, Tick, XProp, YProp, 0, Context).
 
-get_value(Values, Tick, XProp, YProp, Default, _Context) ->
+get_value(#search_result{result=Values}, Tick, XProp, YProp, Default, Context)  ->
+    get_value(Values, Tick, XProp, YProp, Default, Context);
+get_value(Values, Tick, XProp, YProp, Default, _Context) when is_list(Values) ->
     case find(Values, {XProp, Tick}) of
         undefined -> Default;
         PropList -> proplists:get_value(YProp, PropList, Default)

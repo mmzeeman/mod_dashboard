@@ -12,9 +12,13 @@
 -include_lib("zotonic.hrl").
 
 %%
+list_max(#search_result{result=List}, Context) ->
+    list_max(List, Context);
 list_max(List, _Context) when is_list(List) ->
     lists:max(List).
 
+list_max(#search_result{result=List}, NumberOrList, Context) ->
+    list_max(List, NumberOrList, Context);
 list_max(List1, List2, _Context) when is_list(List2) ->
     erlang:max(lists:max(List1), lists:max(List2));
 list_max(List, N, _Context) when is_list(List) andalso is_number(N) ->
